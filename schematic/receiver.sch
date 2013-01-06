@@ -5094,6 +5094,7 @@ In this library the device names are the same as the pin names of the symbols, t
 <wire x1="58.42" y1="20.32" x2="58.42" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="U$2" gate="G$1" pin="VCC"/>
 <wire x1="58.42" y1="48.26" x2="53.34" y2="48.26" width="0.1524" layer="91"/>
+<junction x="-12.7" y="20.32"/>
 </segment>
 </net>
 <net name="+7V" class="0">
