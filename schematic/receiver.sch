@@ -68,6 +68,16 @@
 <pad name="7" x="7.62" y="-2.54" drill="0.8" shape="square"/>
 <pad name="8" x="10.16" y="-2.54" drill="0.8" shape="square"/>
 </package>
+<package name="ATTINY85">
+<pad name="2" x="-3.81" y="1.27" drill="0.8" shape="square"/>
+<pad name="3" x="-3.81" y="-1.27" drill="0.8" shape="square"/>
+<pad name="4" x="-3.81" y="-3.81" drill="0.8" shape="square"/>
+<pad name="1" x="-3.81" y="3.81" drill="0.8" shape="square"/>
+<pad name="7" x="3.81" y="1.27" drill="0.8" shape="square"/>
+<pad name="6" x="3.81" y="-1.27" drill="0.8" shape="square"/>
+<pad name="5" x="3.81" y="-3.81" drill="0.8" shape="square"/>
+<pad name="8" x="3.81" y="3.81" drill="0.8" shape="square"/>
+</package>
 </packages>
 <symbols>
 <symbol name="WRL-10533">
@@ -83,6 +93,20 @@
 <wire x1="15.24" y1="-2.54" x2="15.24" y2="15.24" width="0.254" layer="94"/>
 <wire x1="-15.24" y1="15.24" x2="-15.24" y2="-2.54" width="0.254" layer="94"/>
 <wire x1="-15.24" y1="15.24" x2="15.24" y2="15.24" width="0.254" layer="94"/>
+</symbol>
+<symbol name="ATTINY85">
+<pin name="RESET" x="-15.24" y="5.08" length="middle"/>
+<pin name="PIN3" x="-15.24" y="0" length="middle"/>
+<pin name="PIN4" x="-15.24" y="-5.08" length="middle"/>
+<pin name="GND" x="-15.24" y="-10.16" length="middle"/>
+<pin name="VCC" x="15.24" y="5.08" length="middle" rot="R180"/>
+<pin name="PIN2" x="15.24" y="0" length="middle" rot="R180"/>
+<pin name="PIN1" x="15.24" y="-5.08" length="middle" rot="R180"/>
+<pin name="PIN0" x="15.24" y="-10.16" length="middle" rot="R180"/>
+<wire x1="-10.16" y1="7.62" x2="10.16" y2="7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="7.62" x2="10.16" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-12.7" x2="-10.16" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="-10.16" y1="-12.7" x2="-10.16" y2="7.62" width="0.254" layer="94"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -101,6 +125,28 @@
 <connect gate="G$1" pin="LINEAR_OUT" pad="3"/>
 <connect gate="G$1" pin="VCC" pad="4"/>
 <connect gate="G$1" pin="VCC2" pad="5"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="ATTINY85">
+<gates>
+<gate name="G$1" symbol="ATTINY85" x="0" y="2.54"/>
+</gates>
+<devices>
+<device name="" package="ATTINY85">
+<connects>
+<connect gate="G$1" pin="GND" pad="4"/>
+<connect gate="G$1" pin="PIN0" pad="5"/>
+<connect gate="G$1" pin="PIN1" pad="6"/>
+<connect gate="G$1" pin="PIN2" pad="7"/>
+<connect gate="G$1" pin="PIN3" pad="2"/>
+<connect gate="G$1" pin="PIN4" pad="3"/>
+<connect gate="G$1" pin="RESET" pad="1"/>
+<connect gate="G$1" pin="VCC" pad="8"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -4965,6 +5011,7 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="VOLTAGE_REGULATOR" library="linear" deviceset="78*" device="T" technology="05"/>
 <part name="SUPPLY1" library="supply2" deviceset="+7V" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
+<part name="U$2" library="stuff" deviceset="ATTINY85" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4977,6 +5024,7 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="VOLTAGE_REGULATOR" gate="A1" x="-45.72" y="20.32"/>
 <instance part="SUPPLY1" gate="G$1" x="-58.42" y="33.02"/>
 <instance part="GND3" gate="1" x="-58.42" y="0"/>
+<instance part="U$2" gate="G$1" x="38.1" y="43.18"/>
 </instances>
 <busses>
 </busses>
@@ -4985,8 +5033,9 @@ In this library the device names are the same as the pin names of the symbols, t
 <segment>
 <pinref part="U$1" gate="G$1" pin="DIGITAL_OUT"/>
 <wire x1="-17.78" y1="25.4" x2="-17.78" y2="12.7" width="0.1524" layer="91"/>
-<wire x1="-17.78" y1="12.7" x2="25.4" y2="12.7" width="0.1524" layer="91"/>
-<label x="27.94" y="12.7" size="1.778" layer="95"/>
+<wire x1="-17.78" y1="12.7" x2="53.34" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="PIN0"/>
+<wire x1="53.34" y1="12.7" x2="53.34" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ARDUINO_PIN_GND" class="0">
@@ -5004,9 +5053,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <wire x1="-35.56" y1="5.08" x2="-58.42" y2="5.08" width="0.1524" layer="91"/>
 <wire x1="-35.56" y1="2.54" x2="-35.56" y2="5.08" width="0.1524" layer="91"/>
 <junction x="-35.56" y="5.08"/>
-<wire x1="-20.32" y1="5.08" x2="25.4" y2="5.08" width="0.1524" layer="91"/>
-<label x="27.94" y="5.08" size="1.778" layer="95"/>
+<wire x1="-20.32" y1="5.08" x2="22.86" y2="5.08" width="0.1524" layer="91"/>
 <junction x="-20.32" y="5.08"/>
+<pinref part="U$2" gate="G$1" pin="GND"/>
+<wire x1="22.86" y1="5.08" x2="22.86" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ANTENA" class="0">
@@ -5028,8 +5078,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <net name="ARDUINO_PIN_1" class="0">
 <segment>
 <pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="-12.7" y1="-5.08" x2="25.4" y2="-5.08" width="0.1524" layer="91"/>
-<label x="27.94" y="-5.08" size="1.778" layer="95"/>
+<wire x1="-12.7" y1="-5.08" x2="55.88" y2="-5.08" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="-5.08" x2="55.88" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="PIN1"/>
+<wire x1="55.88" y1="38.1" x2="53.34" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ARDUINO_PIN_VIN" class="0">
@@ -5038,8 +5090,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <wire x1="-12.7" y1="25.4" x2="-12.7" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="-12.7" y1="20.32" x2="-35.56" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="VOLTAGE_REGULATOR" gate="A1" pin="VO"/>
-<wire x1="-12.7" y1="20.32" x2="25.4" y2="20.32" width="0.1524" layer="91"/>
-<label x="27.94" y="20.32" size="1.778" layer="95"/>
+<wire x1="-12.7" y1="20.32" x2="58.42" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="20.32" x2="58.42" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="VCC"/>
+<wire x1="58.42" y1="48.26" x2="53.34" y2="48.26" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+7V" class="0">
