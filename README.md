@@ -1,5 +1,5 @@
 arduino-wireless-motion-detector
-================================
+------
 
 Source code for my Wireless Motion Detector project.
 
