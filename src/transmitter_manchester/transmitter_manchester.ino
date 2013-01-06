@@ -18,10 +18,11 @@ void setup()
   
   digitalWrite(sleepModePin, HIGH);  
 
+  MANCHESTER.SetTxPin(txPin);
+  
   // playinhg initialization sequence
   play_init_sequence();
 
-  MANCHESTER.SetTxPin(txPin);
 }
 
 void play_init_sequence(){

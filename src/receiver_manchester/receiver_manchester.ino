@@ -5,58 +5,38 @@ int ledPin = 1;
 
 void setup()
 {
-  //  Serial.begin(9600);	// Debugging only
-  //  Serial.println("setup");
-
-  pinMode(rxPin, INPUT);
   pinMode(ledPin, OUTPUT);
 
-  // Set digital TX pin
-  MANRX_SetRxPin(rxPin);
-  // Prepare interrupts
-  MANRX_SetupReceive();
-  // Begin receiving data
-  MANRX_BeginReceive();
+  MANCHESTER.SetRxPin(rxPin); //user sets rx pin default 4
+  MANCHESTER.SetTimeOut(1000); //user sets timeout default blocks
 
-  play_init_sequence();
+  // initialization
+  play_alarm(3);
 }
 
-void play_init_sequence(){
-  for (int i=0; i<20; i++){
+void  play_alarm(int cnt){
+  for (int i=0; i<cnt;i++){
     digitalWrite(ledPin, HIGH);
-    delay(100);
-    digitalWrite(ledPin, LOW);    
-    delay(50);    
-    digitalWrite(ledPin, HIGH);
-    delay(50);
-    digitalWrite(ledPin, LOW);    
-    delay(25);    
-  }
-}
-
-void  play_alarm(){
-  for (int i=0; i<20;i++){
-    digitalWrite(ledPin, HIGH);
-    delay(50);
+    delay(500);
     digitalWrite(ledPin, LOW);
-    delay(50); 
+    delay(500); 
   }
-  delay(1000);
 }
 
 void loop()
 {
-
-  delay(1);
-
-  if (MANRX_ReceiveComplete())
-  {
-    unsigned int data = MANRX_GetMessage();
-    MANRX_BeginReceive();
-    play_alarm();    
-
+  unsigned int data = MANCHESTER.Receive();
+  if (data == 1234) {
+    play_alarm(10);
+    delay(1000);
+    play_alarm(5);
+    delay(1000);
+    play_alarm(3);
   }
 }
+
+
+
 
 
 
