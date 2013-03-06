@@ -3,7 +3,7 @@ arduino-wireless-motion-detector
 
 Source code for my Wireless Motion Detector project.
 
-Details: [http://rsbpi.blogspot.com/2013/01/arduino-wireless-motion-detector-take-2.html]
+Details: [http://rsbpi.blogspot.com/2013/03/wireless-motion-detector-summary.html]
 
 Credits
 ------
